@@ -17,9 +17,9 @@ fn main() {
     io::stdin().read_line(&mut guess).expect("Failed to read line!");
 
     // converting guess to a number from string
-    let guess: u32 = guess.parse().expect("Provide a number");
+    let guess: u32 = guess.trim().parse().expect("Provide a number");
 
-    print!("You guessed: {}", guess);
+    print!("You guessed: {}, \n", guess);
 
     // compare guess with secret number using cmp and Ordering from standard library
     match guess.cmp(&secret_number) {
