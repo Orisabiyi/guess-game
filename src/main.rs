@@ -10,14 +10,17 @@ fn main() {
         let mut guess = String::new(); // a mutable variable that holds a string value
         io::stdin().read_line(&mut guess).expect("Failed to read line "); // getting user input
         
-        let guess: u32= guess.trim().parse().expect("Provide a number");
+        let guess: u32=  match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
         
-        println!("You guessed {} \n", guess);
+        println!("You guessed {}", guess);
 
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
-            Ordering::Equal => print!("You won!"),
+            Ordering::Equal => println!("You won!"),
         }
     }
 }
